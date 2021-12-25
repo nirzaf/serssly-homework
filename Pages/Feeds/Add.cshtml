@@ -1,0 +1,44 @@
+﻿@page
+@model serssly.Pages.Feeds.AddFeedModel
+
+@{
+    ViewData["Title"] = "AddFeed";
+}
+
+<h1>AddFeed</h1>
+
+<h4>Feed</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Feed.Type" class="control-label"></label>
+                <select asp-for="Feed.Type" asp-items="Html.GetEnumSelectList<serssly.Models.FeedType>()" class="form-control"></select>
+                <span asp-validation-for="Feed.Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Feed.Title" class="control-label"></label>
+                <input asp-for="Feed.Title" class="form-control" />
+                <span asp-validation-for="Feed.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Feed.Link" class="control-label"></label>
+                <input asp-for="Feed.Link" class="form-control" />
+                <span asp-validation-for="Feed.Link" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="List">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

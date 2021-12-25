@@ -1,0 +1,30 @@
+﻿@page
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Newsroom";
+}
+
+@section Scripts {
+    <script type="text/javascript">
+        $("time").each(function (elem) {
+            var utctimeval = $(this).html();
+            var date = new Date(utctimeval);
+            $(this).html(date.toLocaleString());
+        })
+    </script>
+}
+
+<h1>Latest posts</h1>
+
+@foreach (var feed in Model.UserFeeds)
+{
+    <div>
+        <h2 class="feed" title="@feed.Link">@feed.Title <small>(@feed.Link)</small></h2>
+        @foreach (var item in feed.FeedItems!)
+        {
+            <p><a href="@item.Link" target="_blank">@item.Title</a> <small>(published: <time>@item.PublishDateUtc.ToString("yyyy-MM-ddTHH:mm:ssZ")</time>)</small></p>
+        }
+    </div>
+}
+
